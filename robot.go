@@ -100,7 +100,7 @@ func (r *robot) runSingleCommand(i int, command string, taskComplete bool) (err 
 
 	switch command {
 	case commandNorthwards:
-		// perform some task that can consume time and move northwards
+		// move northwards
 		log.Printf(fmt.Sprintf("%s: %d.command start to move northwards", taskId, i))
 		if err = move(
 			func() {
@@ -115,7 +115,7 @@ func (r *robot) runSingleCommand(i int, command string, taskComplete bool) (err 
 		log.Printf("%s: %d.command finish to move northwards", taskId, i)
 
 	case commandEastwards:
-		// perform some task that can consume time and move eastwards
+		// move eastwards
 		log.Printf("%s: %d.command start to move eastwards", taskId, i)
 
 		if err = move(
@@ -131,7 +131,7 @@ func (r *robot) runSingleCommand(i int, command string, taskComplete bool) (err 
 		log.Printf("%s: %d.command finish to move eastwards", taskId, i)
 
 	case commandSouthwards:
-		// perform some task that can consume time and move southwards
+		// move southwards
 		log.Printf("%s: %d.command start to move southwards", taskId, i)
 		if err = move(
 			func() {
@@ -146,7 +146,7 @@ func (r *robot) runSingleCommand(i int, command string, taskComplete bool) (err 
 		log.Printf("%s: %d.command finish to move southwards", taskId, i)
 
 	case commandWestwards:
-		// perform some task that can consume time and move westwards
+		// move westwards
 		log.Printf("%s: %d.command start to move westwards", taskId, i)
 		if err = move(
 			func() {
