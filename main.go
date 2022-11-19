@@ -13,8 +13,11 @@ import (
 var myRobot Robot
 
 func main() {
-	myRobot = NewRobot()
 	ListenAndServe()
+}
+
+func init() {
+	myRobot = NewRobot()
 }
 
 func ListenAndServe() error {

@@ -177,9 +177,9 @@ func move(act func(), state RobotState, rollBack func()) error {
 		return fmt.Errorf("robot move out of boundary with state %+v", state)
 	}
 
-	// assume action will take one sec
-	time.Sleep(1 * time.Second)
-	
+	// assume action will take some time
+	time.Sleep(oneMoveConsumptionTime)
+
 	return nil
 }
 

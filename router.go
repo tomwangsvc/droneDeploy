@@ -56,6 +56,14 @@ func readStatus() http.HandlerFunc {
 	}
 }
 
+type commandRequest struct {
+	Commands string `json:"commands"`
+}
+
+type commandResponse struct {
+	TaskId string `json:"task_id"`
+}
+
 func runCommands() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		log.Println("start to run commands")
@@ -66,10 +74,7 @@ func runCommands() http.HandlerFunc {
 			return
 		}
 
-		var command struct {
-			Commands string `json:"commands"`
-		}
-
+		command := commandRequest{}
 		if err = json.Unmarshal(body, &command); err != nil {
 			writeResponse(w, http.StatusInternalServerError, "failed to json unmarshal command")
 			return
@@ -89,9 +94,14 @@ func runCommands() http.HandlerFunc {
 			}
 		}()
 
+		responseBytes, err := json.Marshal(commandResponse{TaskId: taskID})
+		if err != nil {
+			writeResponse(w, http.StatusInternalServerError, "failed to json marshal response")
+			return
+		}
 		// task has been accepted successfully
 		// but not guarantee succeed eventually
-		writeResponse(w, http.StatusAccepted, taskID)
+		writeResponse(w, http.StatusAccepted, string(responseBytes))
 	}
 }
 
