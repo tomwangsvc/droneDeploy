@@ -4,12 +4,6 @@ import (
 	"net/http"
 )
 
-// Create a RESTful API to accept a series of commands to the robot.
-// Make sure that the robot doesn't try to move outside the warehouse.
-// Create a RESTful API to report the command series's execution status.
-// Create a RESTful API cancel the command series.
-// The RESTful service should be written in Golang.
-
 var myRobot Robot
 
 func main() {
@@ -17,6 +11,7 @@ func main() {
 }
 
 func init() {
+	// always initilize my robot for test usage
 	myRobot = NewRobot()
 }
 
